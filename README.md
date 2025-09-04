@@ -1,2 +1,2 @@
 # js-hindi-youtube-start-
-A code repo for javascript serires at Chai aur Code
+A code repo for javascript series at Chai aur Code
