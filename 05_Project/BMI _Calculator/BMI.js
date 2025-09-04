@@ -1,36 +1,3 @@
-# Poject related to DOM
- # Solution Code
-
- ## project1 (Color Schema Switcher)
- ```javascript
- // Project one Solution code 
-  
-  
-const buttons = document.querySelectorAll('.button')
-const body = document.querySelector('body')
-
-console.log(buttons)
-buttons.forEach(function (button){
-  console.log(button)
-  button.addEventListener('click' , function(e){
-    if(e.target.id === 'grey'){
-      body.style.backgroundColor = e.target.id
-    }else if(e.target.id === 'pink'){
-      body.style.backgroundColor = e.target.id
-    }else if(e.target.id === 'yellow'){
-      body.style.backgroundColor = e.target.id
-    }else{
-      body.style.backgroundColor = e.target.id
-    }
-  })
-});
- 
-
-
- ```
-
-## Project 2 BMI calculation
-``` javascript
 const h = document.querySelector('#height');
 const w = document.querySelector('#weight');
 const button = document.querySelector('#button');
@@ -59,7 +26,3 @@ button.addEventListener('click', function () {
     result.style.color = "red";
   }
 });
-
-
-```
- 
