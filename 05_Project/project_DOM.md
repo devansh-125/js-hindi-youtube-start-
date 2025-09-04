@@ -1,4 +1,4 @@
-# Poject related to DOM
+# Project related to DOM
  # Solution Code
 
  ## project1 (Color Schema Switcher)
