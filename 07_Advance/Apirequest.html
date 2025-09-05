@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Api Request</title>
+</head>
+<body style="background-color: #212121"> 
+  <h1>hello my name is devansh chaudhary</h1>
+  <p>
+    Value	State	Description
+0	UNSENT	Client has been created. open() not called yet.
+1	OPENED	open() has been called.
+2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+3	LOADING	Downloading; responseText holds partial data.
+4	DONE	The operation is complete.
+
+  </p>
+  <div id="image" style="width: 200px; height: 200px;"></div>
+
+</body>
+ <script>
+  const url = 'https://api.github.com/users/devansh-25'
+  const xrh =  new XMLHttpRequest()// this is class so we made a object 
+  xrh.open('GET' , url)
+  const imageContainer  = document.querySelector('#image')
+  const image = document.createElement('img')
+  xrh.onreadystatechange = function(){
+    if(xrh.readyState === 4){
+      const data  = JSON.parse(this.responseText)
+      // console.log(data.id) this not works as most of the data come in the form of string so first convert it in JSON
+       image.src = data.avatar_url
+       imageContainer.appendChild(image)
+    }
+  }
+  xrh.send()
+
+ </script>
+
+</html>
