@@ -34,6 +34,7 @@ const tenderuser  =new Object() // this is singleton object is only differnce
  console.log(obj1)
  console.log(obj4)
 
+
  const obj5 = {...obj1,...obj,...obj2}
  console.log(obj5)
 
