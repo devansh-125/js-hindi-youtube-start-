@@ -17,6 +17,23 @@ const cells = document.querySelectorAll(".cell");
 const message = document.getElementById("message");
 const resetButton = document.getElementById("reset");
 const Back = document.getElementById("back");
+const player1Input = document.getElementById("player1");
+const player2Input = document.getElementById("player2");
+
+let Player1 = "Player 1"; 
+let Player2 = "Player 2"; 
+
+document.querySelector(".submit").addEventListener("click", () => {
+  if (player1Input.value.trim() !== "") {
+    Player1 = player1Input.value.trim();
+  }
+  if (player2Input.value.trim() !== "") {
+    Player2 = player2Input.value.trim();
+  }
+  // message.textContent = `Player ${currentPlayer === "X" ? Player1 : Player2}'s turn`;
+});
+
+
 
 const X_SVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><line x1='20' y1='20' x2='80' y2='80' stroke='%2361dafb' stroke-width='12' stroke-linecap='round'/><line x1='80' y1='20' x2='20' y2='80' stroke='%2361dafb' stroke-width='12' stroke-linecap='round'/></svg>";
 
@@ -63,7 +80,6 @@ cells.forEach(cell => {
 
 function handleCellClick(e) {
   const index = e.target.getAttribute("data-index");
-
   if (!gameActive || board[index]) return;
 
   board[index] = currentPlayer;
@@ -71,14 +87,14 @@ function handleCellClick(e) {
 
   const img = document.createElement("img");
   img.src = currentPlayer === "X" ? X_SVG : O_SVG;
-
   img.alt = currentPlayer;
   img.classList.add("symbol");
   e.target.appendChild(img);
 
+  let player = currentPlayer === "X" ? Player1 : Player2;
+
   if (checkWin()) {
-    message.textContent = `🎉 Player ${currentPlayer} wins!`;
-    currentPlayer = currentPlayer === "X" ? "O" : "X";
+    message.textContent = `🎉 ${player} wins!`;
     gameActive = false;
     return;
   }
@@ -89,10 +105,11 @@ function handleCellClick(e) {
     return;
   }
 
+ 
   currentPlayer = currentPlayer === "X" ? "O" : "X";
-  message.textContent = `Player ${currentPlayer}'s turn`;
+  let nextPlayer = currentPlayer === "X" ? Player1 : Player2;
+  message.textContent = ` ${nextPlayer}'s turn`;
 }
-
 
 Back.addEventListener("click", () => {
   if (lastIndexes.length === 0) return; 
@@ -100,16 +117,10 @@ Back.addEventListener("click", () => {
   let lastIndex = lastIndexes.pop(); 
   board[lastIndex] = "";
   cells[lastIndex].innerHTML = "";
-  cells.forEach(cell => cell.style.backgroundColor = "")
+  cells.forEach(cell => cell.style.backgroundColor = "");
 
   currentPlayer = currentPlayer === "X" ? "O" : "X";
-  message.textContent = `Player ${currentPlayer}'s turn`;
+  let backPlayer = currentPlayer === "X" ? Player1 : Player2;
+  message.textContent = ` ${backPlayer}'s turn`;
   gameActive = true; 
 });
-
-
-
-
-
-
-

@@ -1,123 +1,151 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;900&display.swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
+  font-family: 'Poppins', sans-serif;
+  /* You can change this URL to any image you like! */
+  background-image: url('https://images.pexels.com/photos/1767434/pexels-photo-1767434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color: #fff;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-/* ===== Container ===== */
+/* --- Glass Effect Cards --- */
+.players,
 .container {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 5rem;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-  width: 360px;
+  background: rgba(30, 30, 40, 0.6); /* Semi-transparent background */
+  backdrop-filter: blur(12px);      /* The "blur" for the glass effect */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  width: 100%;
 }
 
-/* ===== Title ===== */
+/* --- Player Name Inputs --- */
+.players {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  padding: 20px;
+  max-width: 500px;
+}
+
+.player1, .player2 {
+  flex-grow: 1;
+}
+
+.players label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #bbbbbb;
+}
+
+.players input {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+}
+
+/* --- Main Game Area --- */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  padding: 30px;
+  max-width: 380px;
+}
+
 h1 {
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-  color: #61dafb;
-  text-shadow: 0 0 8px rgba(97, 218, 251, 0.9);
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* ===== Board ===== */
+/* --- Game Board & Cells --- */
 .board {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(3, 100px);
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   gap: 12px;
-  margin: 0 auto 1.5rem;
 }
 
-/* ===== Cells ===== */
 .cell {
-  background: #1c2a33;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3); /* Darker inset cells */
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4.5rem;
+  font-weight: 900;
+  transition: background-color 0.2s ease;
 }
 
 .cell:hover {
-  background: #2f4654;
-  transform: scale(1.05);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Show X/O as images */
 .cell.x {
-  background: url("images/x.png") center/70% no-repeat;
+  color: #00e5ff; /* Vibrant Cyan */
+  text-shadow: 0 0 8px #00e5ff;
 }
 
 .cell.o {
-  background: url("images/o.png") center/70% no-repeat;
+  color: #ff4081; /* Hot Pink */
+  text-shadow: 0 0 8px #ff4081;
 }
 
-/* ===== Controls ===== */
-.controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
+.cell.win {
+  background-color: rgba(0, 229, 255, 0.2);
 }
 
-/* Message */
-#message {
-  margin-top: 15px;
-  font-size: 1.2rem;        
-  font-weight: 600;          
-  color: #00eaff;         
-  text-align: center;       
- 
-  letter-spacing: 1px;    
+/* --- Message & Buttons --- */
+.message {
+  font-size: 1.25rem;
+  font-weight: 600;
+  min-height: 28px;
 }
 
-
-/* Buttons group */
 .buttons {
   display: flex;
-  gap: 10px;
+  gap: 15px;
 }
 
-/* ===== Buttons ===== */
 button {
-  background: #61dafb;
+  padding: 10px 20px;
+  border-radius: 6px;
   border: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
-  color: #000;
+  transition: background-color 0.2s ease;
 }
 
 button:hover {
-  background: #4ebcdd;
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-.cell img.symbol {
-  width: 70%;
-  height: 70%;
-  object-fit: contain;
-  pointer-events: none;
-}
-.symbol {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  pointer-events: none; 
+  background-color: rgba(255, 255, 255, 0.2);
 }
